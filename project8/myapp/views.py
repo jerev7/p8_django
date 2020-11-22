@@ -1,12 +1,13 @@
 # from django.shortcuts import render
 from django.http import HttpResponse
 from .models import PRODUCTS, CATEGORIES
+from django.template import loader
 
 
 # Create your views here.
 def index(request):
-	message = "Salut tout le monde !\nPour voir la liste ajoute /myapp à l'url ci dessus !"
-	return HttpResponse(message)
+	template = loader.get_template('myapp/index.html')
+	return HttpResponse(template.render(request=request))
 
 def listing(request):
 	categories = ["<li>{}</li>".format(category) for category in CATEGORIES]
