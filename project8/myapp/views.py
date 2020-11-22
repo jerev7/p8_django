@@ -7,7 +7,8 @@ from django.template import loader
 # Create your views here.
 def index(request):
 	template = loader.get_template('myapp/index.html')
-	return HttpResponse(template.render(request=request))
+	context = {'categories': CATEGORIES}
+	return HttpResponse(template.render(context, request=request))
 
 def listing(request):
 	categories = ["<li>{}</li>".format(category) for category in CATEGORIES]
