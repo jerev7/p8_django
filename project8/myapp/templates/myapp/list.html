@@ -1,5 +1,7 @@
 <ul>
 {% for category in categories %}
-    <li>{{ category }}</li>
+    <a href="{% url 'detail' category_id=0 %}">
+    	<li>{{ category }}</li>
+    <a/>
 {% endfor %}
 </ul>
