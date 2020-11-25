@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import PRODUCTS, CATEGORIES
 from .models import Category, Products
@@ -19,7 +19,22 @@ def listing(request):
 
 def detail(request, category_id):
 	id = int(category_id)
-	category = Category.objects.get(pk=id)
+	category = get_object_or_404(Category, pk=id)
 	products = category.product.all()
 	context = {'products': products}
 	return render(request, 'myapp/detail.html', context)
+
+def search(request):
+	query = request.GET.get('query')
+	if not query:
+		categories = Category.objects.all()
+	else:
+		categories = Category.objects.filter(name__icontains=query)
+	if not categories.exists():
+		categories = Category.objects.filter(product__name__icontains=query)
+	title = "Résultats pour la requête %s"%query
+	context ={
+		'categories': categories,
+		'title': title
+	}
+	return render(request, 'myapp/search.html', context)
