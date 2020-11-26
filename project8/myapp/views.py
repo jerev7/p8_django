@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound, Http404
 from .models import PRODUCTS, CATEGORIES
 from .models import Category, Products
 from django.template import loader
+
 
 
 # Create your views here.
@@ -12,10 +13,10 @@ def index(request):
 	return render(request, 'myapp/index.html', context)
 
 
-def listing(request):
-	categories = ["<li>{}</li>".format(category) for category in CATEGORIES]
-	message = """<ul>{}</ul>""".format("\n".join(categories))
-	return HttpResponse(message)
+# def listing(request):
+# 	categories = ["<li>{}</li>".format(category) for category in CATEGORIES]
+# 	message = """<ul>{}</ul>""".format("\n".join(categories))
+# 	return HttpResponse(message)
 
 def detail(request, category_id):
 	id = int(category_id)
@@ -30,8 +31,12 @@ def search(request):
 		categories = Category.objects.all()
 	else:
 		categories = Category.objects.filter(name__icontains=query)
+
 	if not categories.exists():
 		categories = Category.objects.filter(product__name__icontains=query)
+
+	if len(categories) == 0:
+		raise Http404
 	title = "La recherche %s a pour résultat les categories suivantes :"%query
 	context ={
 		'categories': categories,

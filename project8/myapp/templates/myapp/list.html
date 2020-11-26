@@ -1,4 +1,3 @@
-{% include 'myapp/search_form.html' %}
 <ul>
 {% for category in categories %}
     <a href="{% url 'detail' category_id=category.id %}">
