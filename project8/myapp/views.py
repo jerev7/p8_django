@@ -32,7 +32,7 @@ def search(request):
 		categories = Category.objects.filter(name__icontains=query)
 	if not categories.exists():
 		categories = Category.objects.filter(product__name__icontains=query)
-	title = "Résultats pour la requête %s"%query
+	title = "La recherche %s a pour résultat les categories suivantes :"%query
 	context ={
 		'categories': categories,
 		'title': title
