@@ -1,6 +1,20 @@
 <p>Les produits présent dans cette catégorie sont :</p>
 <ul>
+
 {% for product in products %}
     	<li>{{ product.name }}</li>
 {% endfor %}
+{% if paginate %}
+  <div class="clearfix"></div>
+  <nav aria-label="">
+    <ul class="pager">
+      {% if products.has_previous %}
+          <li><a href="?page={{ products.previous_page_number }}">Précédent</a></li>
+      {% endif %}
+      {% if products.has_next %}
+          <li><a href="?page={{ products.next_page_number }}">Suivant</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}
 </ul>
