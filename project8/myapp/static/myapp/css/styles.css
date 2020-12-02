@@ -6073,7 +6073,7 @@ a.close.disabled {
 }
 
 .bg-primary {
-  background-color: #f4623a !important;
+  background-color: #C45525 !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
@@ -10143,3 +10143,5 @@ header.masthead h1 {
 .text-white-75 {
   color: rgba(255, 255, 255, 0.75);
 }
+
+/*personal adds*/
