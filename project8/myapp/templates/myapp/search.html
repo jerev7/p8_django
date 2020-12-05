@@ -1,8 +1,9 @@
-{% extends 'myapp/base.html' %}
+{% extends 'myapp/second_page.html' %}
 
-{% block content %}
-	{% include 'myapp/search_form.html' %}
+{% block second1 %}
+	Produit recherché : {{ query }}
+{% endblock %}
+{% block second2 %}
 	{{ title }}
     {% include 'myapp/list.html' %}
-
 {% endblock %}

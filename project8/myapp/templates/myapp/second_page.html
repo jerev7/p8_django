@@ -1,1 +1,18 @@
 {% extends 'myapp/base.html' %}
+
+{% block content %}
+<section class="page-section bg-primary" id="about">
+    <div class="container">
+        <div class="row justify-content-center">
+            {% block second1 %}{% endblock %}
+        </div>
+    </div>
+</section>
+<section class="page-section bg-primary" id="about">
+    <div class="container">
+        <div class="row justify-content-center">
+            {% block second2 %}{% endblock %}
+        </div>
+    </div>
+</section>
+{% endblock %}

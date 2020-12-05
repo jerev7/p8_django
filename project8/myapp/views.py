@@ -49,6 +49,7 @@ def search(request):
     title = "La recherche %s a pour résultat les categories suivantes :"%query
     context ={
         'categories': categories,
-        'title': title
+        'title': title,
+        'query': query
     }
     return render(request, 'myapp/search.html', context)
