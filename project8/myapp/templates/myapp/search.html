@@ -1,9 +1,9 @@
 {% extends 'myapp/second_page.html' %}
 
 {% block second1 %}
-	Produit recherché : {{ query }}
+	<p class="text-white font-weight-light mb-5"><strong>Produit recherché : {{ query }}</strong></p>
 {% endblock %}
 {% block second2 %}
-	{{ title }}
+	<p class="text-white-75 font-weight-light mb-5">{{ title }}</p>
     {% include 'myapp/list.html' %}
 {% endblock %}
