@@ -22,7 +22,7 @@ def detail(request, category_id):
     id = int(category_id)
     category = get_object_or_404(Category, pk=id)
     product_list = category.product.all()
-    paginator = Paginator(product_list, 1)
+    paginator = Paginator(product_list, 6)
     page = request.GET.get('page')
     try:
         products = paginator.page(page)

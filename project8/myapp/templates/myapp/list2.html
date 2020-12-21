@@ -1,7 +1,12 @@
-<ul>
-
 {% for product in products %}
-    	<li><p class="text-white-75 font-weight-light mb-5">{{ product.name }}</p></li>
+  <div class="col-sm-4 text-center">
+    <a href="/">
+      <img class="img-responsive" src="{{ product.image_url }}" width="100" height="100" alt="{{ product.title }}">
+    </a>
+    <p class="text-white-75 font-weight-light mb-5">{{ product.name }}</p>
+    <p>Nutriscore : {{ product.nutriscore }}</p>
+  </div>
+  {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
 {% endfor %}
 {% if paginate %}
   <div class="clearfix"></div>
@@ -16,4 +21,3 @@
     </ul>
   </nav>
 {% endif %}
-</ul>
