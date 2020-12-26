@@ -2,8 +2,8 @@
   <div class="col-sm-4 text-center">
     <a href="{% url 'detail' product_id=product.id %}">
       <img class="img-responsive" src="{{ product.image_url }}" width="100" height="100" alt="{{ product.name }}">
+      <p class="text-white-75 font-weight-light mb-5">{{ product.name }}</p>
     </a>
-    <p class="text-white-75 font-weight-light mb-5">{{ product.name }}</p>
     <p>Nutriscore : {{ product.nutriscore }}</p>
   </div>
   {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}

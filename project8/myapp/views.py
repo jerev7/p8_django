@@ -33,7 +33,11 @@ def detail(request, product_id):
     except EmptyPage:
         products = paginator.page(paginator.num_pages)
 
-    context = {'products': products, 'paginate': True}
+    context = {
+        'products': products,
+        'paginate': True,
+        'product_selected': product_selected
+    }
     return render(request, 'myapp/detail.html', context)
 
 def search(request):
