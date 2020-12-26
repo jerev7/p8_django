@@ -18,10 +18,12 @@ def index(request):
 #   message = """<ul>{}</ul>""".format("\n".join(categories))
 #   return HttpResponse(message)
 
-def detail(request, category_id):
-    id = int(category_id)
-    category = get_object_or_404(Category, pk=id)
-    product_list = category.product.all()
+def detail(request, product_id):
+    id = int(product_id)
+    product_selected = get_object_or_404(Products, pk=id)
+    category = get_object_or_404(Category, product__id=product_selected.id)
+    # category = get_object_or_404(Category, pk=id)
+    product_list = category.product.filter(nutriscore__lt = product_selected.nutriscore)
     paginator = Paginator(product_list, 6)
     page = request.GET.get('page')
     try:
@@ -37,19 +39,25 @@ def detail(request, category_id):
 def search(request):
     query = request.GET.get('query')
     if not query:
-        categories = Category.objects.all()
+        product_list = Products.objects.all()
     else:
-        categories = Category.objects.filter(name__icontains=query)
+        product_list = Products.objects.filter(name__icontains=query)
+    paginator = Paginator(product_list, 6)
+    page = request.GET.get('page')
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+    # if len(categories) == 0:
+    #     categories = Category.objects.filter(product__name__icontains=query)
 
-    if len(categories) == 0:
-        categories = Category.objects.filter(product__name__icontains=query)
-
-    if len(categories) == 0:
+    if len(products) == 0:
         raise Http404
-    title = "La recherche %s a pour résultat les categories suivantes :"%query
     context ={
-        'categories': categories,
-        'title': title,
+        'paginate': True,
+        'products': products,
         'query': query
     }
     return render(request, 'myapp/search.html', context)

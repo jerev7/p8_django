@@ -1,7 +1,23 @@
-<ul>
-{% for category in categories %}
-    <a href="{% url 'detail' category_id=category.id %}">
-    	<li>{{ category }}</li>
-    <a/>
+{% for product in products %}
+  <div class="col-sm-4 text-center">
+    <a href="{% url 'detail' product_id=product.id %}">
+      <img class="img-responsive" src="{{ product.image_url }}" width="100" height="100" alt="{{ product.name }}">
+    </a>
+    <p class="text-white-75 font-weight-light mb-5">{{ product.name }}</p>
+    <p>Nutriscore : {{ product.nutriscore }}</p>
+  </div>
+  {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
 {% endfor %}
-</ul>
+{% if paginate %}
+  <div class="clearfix"></div>
+  <nav aria-label="">
+    <ul class="pager">
+      {% if products.has_previous %}
+          <li><a href="?page={{ products.previous_page_number }}">Précédent</a></li>
+      {% endif %}
+      {% if products.has_next %}
+          <li><a href="?page={{ products.next_page_number }}">Suivant</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}
