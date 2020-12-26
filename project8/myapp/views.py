@@ -41,7 +41,7 @@ def search(request):
     else:
         categories = Category.objects.filter(name__icontains=query)
 
-    if not categories.exists():
+    if len(categories) == 0:
         categories = Category.objects.filter(product__name__icontains=query)
 
     if len(categories) == 0:
