@@ -1,23 +1,30 @@
-{% for product in products %}
-  <div class="col-sm-4 text-center">
-    <a href="/">
-      <img class="img-responsive" src="{{ product.image_url }}" width="100" height="100" alt="{{ product.name }}">
-    </a>
-    <p class="text-white-75 font-weight-light mb-5">{{ product.name }}</p>
-    <p>Nutriscore : {{ product.nutriscore }}</p>
+{% if products|length_is:"0" %}
+  <div class="text-center">
+    <h3 class="h4 mb-2">Nous n'avons touvé aucun produit meilleur pour votre santé que celui que vous avez sélectionné. Vous pouvez donc continuer à le manger en toute tranquilité !</h3>
   </div>
-  {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
-{% endfor %}
-{% if paginate %}
-  <div class="clearfix"></div>
-  <nav aria-label="">
-    <ul class="pager">
-      {% if products.has_previous %}
-          <li><a href="?page={{ products.previous_page_number }}">Précédent</a></li>
-      {% endif %}
-      {% if products.has_next %}
-          <li><a href="?page={{ products.next_page_number }}">Suivant</a></li>
-      {% endif %}
-    </ul>
-  </nav>
+
+{% else %}
+  {% for product in products %}
+    <div class="col-sm-4 text-center">
+      <a href="/">
+        <img class="img-responsive" src="{{ product.image_url }}" width="100" height="100" alt="{{ product.name }}">
+      </a>
+      <p class="text-white-75 font-weight-light mb-5">{{ product.name }}</p>
+      <p>Nutriscore : {{ product.nutriscore }}</p>
+    </div>
+    {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
+  {% endfor %}
+  {% if paginate %}
+    <div class="clearfix"></div>
+    <nav aria-label="">
+      <ul class="pager">
+        {% if products.has_previous %}
+            <li><a href="?page={{ products.previous_page_number }}">Précédent</a></li>
+        {% endif %}
+        {% if products.has_next %}
+            <li><a href="?page={{ products.next_page_number }}">Suivant</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  {% endif %}
 {% endif %}
