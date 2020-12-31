@@ -13,18 +13,18 @@ def get_product(category, url):
 
 	nutrition_grade_list = ["a", "b", "c", "d", "e"]
 	nutriscore_letter_url = [
-		"{% static 'myapp/assets/img/nutriscore/nutrilettre_a.png' %}",
-		"{% static 'myapp/assets/img/nutriscore/nutrilettre_b.png' %}",
-		"{% static 'myapp/assets/img/nutriscore/nutrilettre_c.png' %}",
-		"{% static 'myapp/assets/img/nutriscore/nutrilettre_d.png' %}",
-		"{% static 'myapp/assets/img/nutriscore/nutrilettre_e.png' %}"
+		"myapp/assets/img/nutriscore/nutrilettre_a.png",
+		"myapp/assets/img/nutriscore/nutrilettre_b.png",
+		"myapp/assets/img/nutriscore/nutrilettre_c.png",
+		"myapp/assets/img/nutriscore/nutrilettre_d.png",
+		"myapp/assets/img/nutriscore/nutrilettre_e.png"
 	]
 	nutriscore_complete_url = [
-		"{% static 'myapp/assets/img/nutriscore/nutricomplet_a.png' %}",
-		"{% static 'myapp/assets/img/nutriscore/nutricomplet_b.png' %}",
-		"{% static 'myapp/assets/img/nutriscore/nutricomplet_c.png' %}",
-		"{% static 'myapp/assets/img/nutriscore/nutricomplet_d.png' %}",
-		"{% static 'myapp/assets/img/nutriscore/nutricomplet_e.png' %}"
+		"myapp/assets/img/nutriscore/nutricomplet_a.png",
+		"myapp/assets/img/nutriscore/nutricomplet_b.png",
+		"myapp/assets/img/nutriscore/nutricomplet_c.png",
+		"myapp/assets/img/nutriscore/nutricomplet_d.png",
+		"myapp/assets/img/nutriscore/nutricomplet_e.png"
 	]
 	response = requests.get(url)
 	my_products = response.json()["products"]
@@ -50,7 +50,7 @@ def get_product(category, url):
 			if "image_front_url" in product:
 				new_entry["image_url"] = product["image_front_url"]
 			else:
-				new_entry["image_url"] = "{% static 'myapp/assets/img/image_not_found.png' %}"
+				new_entry["image_url"] = "myapp/assets/img/image_not_found.png"
 			# i += 1
 			# new_entry["compte"] = i
 			final_list.append(new_entry)
