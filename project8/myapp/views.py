@@ -18,8 +18,7 @@ def index(request):
 #   message = """<ul>{}</ul>""".format("\n".join(categories))
 #   return HttpResponse(message)
 
-def detail(request, product_id):
-    nutriscore_list =["A", "B", "C", "D", "E"]
+def results(request, product_id):
     id = int(product_id)
     product_selected = get_object_or_404(Products, pk=id)
     category = get_object_or_404(Category, product__id=product_selected.id)
@@ -35,12 +34,11 @@ def detail(request, product_id):
         products = paginator.page(paginator.num_pages)
 
     context = {
-        'nutriscore_list': nutriscore_list,
         'products': products,
         'paginate': True,
         'product_selected': product_selected
     }
-    return render(request, 'myapp/detail.html', context)
+    return render(request, 'myapp/results.html', context)
 
 def search(request):
     query = request.GET.get('query')
