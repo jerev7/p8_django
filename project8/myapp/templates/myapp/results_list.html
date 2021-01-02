@@ -20,7 +20,9 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-lg-12 text-center">
-            <span class="text-white-75 font-weight-light mb-5">{{ product.name }}</span>
+            <a href="{% url 'product_detail' product_id=product.id %}">
+              <span class="text-white-75 font-weight-light mb-5">{{ product.name }}</span>
+            </a>
           </div>
         </div>
         <div class="row justify-content-center">
