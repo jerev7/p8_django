@@ -50,7 +50,7 @@ def get_product(category, url):
 			if "image_front_url" in product:
 				new_entry["image_url"] = product["image_front_url"]
 			else:
-				new_entry["image_url"] = "myapp/assets/img/image_not_found.png"
+				new_entry["image_url"] = "myapp/assets/img/image_not_found.png" # mettre chaine vide et mettre le lien dans le front
 			# i += 1
 			# new_entry["compte"] = i
 			final_list.append(new_entry)
