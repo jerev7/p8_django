@@ -40,6 +40,14 @@ def results(request, product_id):
     }
     return render(request, 'myapp/results.html', context)
 
+def product_detail(request, product_id):
+    id = int(product_id)
+    product_selected = get_object_or_404(Products, pk=id)
+    context = {
+        'product_selected': product_selected
+    }
+    return render(request, 'myapp/product_detail.html', context)
+
 def search(request):
     query = request.GET.get('query')
     if not query:
