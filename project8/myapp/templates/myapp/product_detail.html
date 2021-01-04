@@ -18,5 +18,46 @@
 {% endblock %}
 
 {% block second2 %}
-	<h3 class="h4 mb-2">Detail du produit : {{ product_selected.name }}</h3>
+  <div class="col-sm-6 text-center">
+    <div class="container" style="margin: 15px">
+      <div class="row justify-content-center">
+        <div class="col-lg-12 text-center">
+          <span class="text-white-75 font-weight-light mb-5" style="font-size: 150%">Nutriscore</span>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div style="margin: 15px">
+          <img src="{% static product_selected.nutriscore_complete_url %}" alt="nutriscore_complete">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 text-center">
+    <div class="container" style="margin: 15px">
+      <div class="row justify-content-center">
+        <div class="col-lg-12 text-center">
+          <span class="text-white-75 font-weight-light mb-5" style="font-size: 150%">Repères nutritionnels pour 100g :</span>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-12 text-center">
+          <span class="text-white-75 font-weight-light mb-5">Valeur énergétique : {{ product_selected.energy_value }} {{ product_selected.energy_unit }}</span>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-12 text-center">
+          <span class="text-white-75 font-weight-light mb-5">Sucres (en grammes) : {{ product_selected.sugars_100g }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container" style="margin: 45px">
+    <div class="row justify-content-center">
+      <div class="col-lg-12 text-center">
+        <a href="{{ product_selected.url_offacts }}">
+          <span class="text-white-75 font-weight-light mb-5" style="border: 1px solid white; padding: 5px;font-size: 175%">Voir la fiche d'Openfoodfacts</span>
+        </a>
+      </div>
+    </div>
+  </div>
 {% endblock %}
