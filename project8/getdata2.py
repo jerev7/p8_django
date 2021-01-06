@@ -35,12 +35,12 @@ def get_product(category, url):
 			new_entry["name"] = product["product_name_fr"]
 			new_entry["category"] = category
 			new_entry["url_offacts"] = product["url"]
-			new_entry["energy_value"] = product["nutriments"]["energy_value"]
+			new_entry["energy_value"] = float(product["nutriments"]["energy_value"])
 			new_entry["energy_unit"] = product["nutriments"]["energy_unit"]
-			new_entry["sugars_100g"] = product["nutriments"]["sugars_100g"]
-			new_entry["fat_100g"] = product["nutriments"]["fat_100g"]
-			new_entry["saturated_fat_100g"] = product["nutriments"]["saturated-fat_100g"]
-			new_entry["proteins"] = product["nutriments"]["proteins"]
+			new_entry["sugars_100g"] = float(product["nutriments"]["sugars_100g"])
+			new_entry["fat_100g"] = float(product["nutriments"]["fat_100g"])
+			new_entry["saturated_fat_100g"] = float(product["nutriments"]["saturated-fat_100g"])
+			new_entry["proteins"] = float(product["nutriments"]["proteins"])
 			if "nutrition_grades" in product:
 				new_entry["nutriscore"] = nutrition_grade_list.index(product["nutrition_grades"])
 			else:
@@ -57,11 +57,8 @@ def get_product(category, url):
 	return final_list
 
 
-# def printme(stuffs):
-# 	print(stuffs)
 
-
-# printme(get_product("pates-a-tartiner-aux-noisettes", "https://fr.openfoodfacts.org/categorie/pates-a-tartiner-aux-noisettes/1.json"))
+# print(get_product("pates-a-tartiner-aux-noisettes", "https://fr.openfoodfacts.org/categorie/pates-a-tartiner-aux-noisettes/1.json"))
 
 
 def add_products_to_db(product_list):
