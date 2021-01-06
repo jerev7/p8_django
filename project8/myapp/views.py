@@ -8,15 +8,10 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 # Create your views here.
 def index(request):
-    categories = Category.objects.all()
-    context = {'categories': categories}
-    return render(request, 'myapp/index.html', context)
+    return render(request, 'myapp/index.html')
 
-
-# def listing(request):
-#   categories = ["<li>{}</li>".format(category) for category in CATEGORIES]
-#   message = """<ul>{}</ul>""".format("\n".join(categories))
-#   return HttpResponse(message)
+def register(request):
+    return render(request, 'myapp/register.html')
 
 def results(request, product_id):
     id = int(product_id)
