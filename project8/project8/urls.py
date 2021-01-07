@@ -17,13 +17,15 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.urls import path
+from django.contrib.auth import views as auth_views
 
 from myapp import views
 
 urlpatterns = [
 	url(r'^$', views.index),
     url(r'^admin/', admin.site.urls),
-    url(r'^myapp/', include('myapp.urls'))
+    url(r'^myapp/', include('myapp.urls')),
+    url(r'^myapp/', include('django.contrib.auth.urls'))
 ]
 
 if settings.DEBUG:
