@@ -10213,3 +10213,12 @@ header.masthead h1 {
     font-size: 3.5rem;
   }
 }
+
+.text-muted {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.requiredField {
+  color: white !important;
+  font-size: 125%;
+}

@@ -1,9 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from .models import Category, Products
 from django.template import loader
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-
+from .register_form import RegisterForm
+from django.contrib import messages
 
 
 # Create your views here.
@@ -11,7 +12,19 @@ def index(request):
     return render(request, 'myapp/index.html')
 
 def register(request):
-    return render(request, 'myapp/register.html')
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Account created successfully')
+            return redirect('register')
+
+    else:
+        form = RegisterForm()
+    context = {
+        "form": form
+    }
+    return render(request, 'myapp/register.html', context)
 
 def results(request, product_id):
     id = int(product_id)
