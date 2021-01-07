@@ -31,8 +31,8 @@
                     <ul class="navbar-nav ml-auto my-2 my-lg-0">
                         <li class="nav-item">{% include 'myapp/search_form.html' %}</li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about"><img id="carotte" src="{% static 'myapp/assets/img/carotte.png' %}" width="40" height="30" alt="carotte"></a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="myapp/login/">Login</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="myapp/logout">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'login' %}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'logout' %}">Logout</a></li>
                     </ul>
                 </div>
             </div>

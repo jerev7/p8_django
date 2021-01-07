@@ -11,14 +11,19 @@ from django.contrib import messages
 def index(request):
     return render(request, 'myapp/index.html')
 
+def registration_ok(request):
+    return render(request, 'myapp/registration_ok.html')
+
+def logged_out(request):
+    return render(request, 'myapp/logged_out.html')
+
 def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, 'Account created successfully')
-            return redirect('login')
-
+            return redirect('registration_ok')
     else:
         form = RegisterForm()
     context = {
