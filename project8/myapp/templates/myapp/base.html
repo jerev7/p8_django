@@ -32,7 +32,7 @@
                         <li class="nav-item">{% include 'myapp/search_form.html' %}</li>
                         {% if request.user.is_authenticated %}
                             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'user_products' %}"><img id="carotte" src="{% static 'myapp/assets/img/carotte_blanc.png' %}" width="30" height="20" title="Mes Aliments" alt="carotte"></a></li>
-                            <li class="nav-item"><p class="nav-link js-scroll-trigger">Bonjour {{ user.username }} !!</p></li>
+                            <li class="nav-item"><span class="nav-link js-scroll-trigger">Bienvenue {{ user.username }}!</span></li>
                             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'logout' %}"title="Se Déconnecter"><i class="fas fa-sign-out-alt" id="logout"></i></a></li>
                         {% else %}
                             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'login' %}" title="Se Connecter"><i class="fas fa-user" id="user"></i></a></li>
@@ -80,20 +80,10 @@
         <!-- Third party plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+
         <!-- Core theme JS-->
         <script src="{% static 'myapp/js/scripts.js' %}"></script>
-        <script>
-            $(document).ready(function() {
-                    // Navigation color change 
-                    $(window).scroll(function() {
-                    var nav_img = $('#carotte');
-                    if ($(document).scrollTop() < 90) {
-                        nav_img.attr("src","{% static 'myapp/assets/img/carotte_blanc.png' %}");
-                    } else {
-                        nav_img.attr("src","{% static 'myapp/assets/img/carotte_noir.png' %}");
-                    }
-                    });
-                });
-        </script>
+        <script src="{% static 'myapp/js/script_perso.js' %}"></script>
     </body>
 </html>
