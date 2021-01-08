@@ -1,9 +1,14 @@
 {% if products|length_is:"0" %}
   <div class="text-center">
-    <h3 class="h4 mb-2">Nous n'avons touvé aucun produit meilleur pour votre santé que celui que vous avez sélectionné. Vous pouvez donc continuer à le manger en toute tranquilité !</h3>
+    <h3 class="h4 mb-2 text-white-75">Nous n'avons touvé aucun produit meilleur pour votre santé que celui que vous avez sélectionné. Vous pouvez donc continuer à le manger en toute tranquilité !</h3>
   </div>
 
 {% else %}
+  <div class="container" style="margin: 15px">
+    <div class="row justify-content-center">
+      <span class="text-white font-weight-light mb-5" style="font-size: 150%">Choisissez un produit de substitution ci dessous :</span>
+    </div>
+  </div>
   {% for product in products %}
   {% load static %}
     <div class="col-sm-4 text-center">
