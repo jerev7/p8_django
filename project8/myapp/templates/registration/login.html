@@ -8,8 +8,8 @@
     <form method="POST" class="form-group" style="margin: 30px";>
       {% csrf_token %}
       {{ form|crispy }}
-      <p class="text-white-75">Don't have an account? Create one <a href="{% url 'register' %}">here</a></p>
-      <button type="submit" class="btn btn-success">Login</button>
+      <p class="text-white-75">Vous n'avez pas de compte? Créez-en un <a href="{% url 'register' %}">ici</a></p>
+      <button type="submit" class="btn btn-success">Se Connecter</button>
     </form>
   </div>
 </header>
