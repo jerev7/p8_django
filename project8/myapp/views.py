@@ -86,3 +86,10 @@ def search(request):
         'query': query
     }
     return render(request, 'myapp/search.html', context)
+
+def user_products(request):
+    user = request.user
+    if user.is_authenticated:
+        return render(request, 'myapp/user_products.html')
+    else:
+        return redirect('login')

@@ -1,0 +1,12 @@
+{% extends 'myapp/second_page.html' %}
+
+{% block second1 %}
+    <div class="row justify-content-center">
+      <p class="text-white font-weight-light mb-5" style="font-size: 150%">Bienvenue {{ user.username }} !!</p>
+    </div>
+    <div class="row justify-content-center">
+      <p class="text-white font-weight-light mb-5" style="font-size: 150%">Adresse mail : {{ user.email }}</p>
+    </div>
+{% endblock %}
+{% block second2 %}
+{% endblock %}

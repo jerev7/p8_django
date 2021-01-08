@@ -31,7 +31,7 @@
                     <ul class="navbar-nav ml-auto my-2 my-lg-0">
                         <li class="nav-item">{% include 'myapp/search_form.html' %}</li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'login' %}" title="Login"><i class="fas fa-user" id="user"></i></a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about"><img id="carotte" src="{% static 'myapp/assets/img/carotte_blanc.png' %}" width="30" height="20" title="Mes Aliments" alt="carotte"></a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'user_products' %}"><img id="carotte" src="{% static 'myapp/assets/img/carotte_blanc.png' %}" width="30" height="20" title="Mes Aliments" alt="carotte"></a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'logout' %}"title="Logout"><i class="fas fa-sign-out-alt" id="logout"></i></a></li>
                     </ul>
                 </div>
