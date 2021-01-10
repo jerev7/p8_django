@@ -93,3 +93,12 @@ def user_products(request):
         return render(request, 'myapp/user_products.html')
     else:
         return redirect('login')
+
+"""
+def save_product(request, product_selected_id, substitution_id):
+    product_selected = get_object_or_404(Product, pk=product_selected_id)
+    substitution_product = get_object_or_404(Product, pk=substitution_id)
+    user = request.user
+
+    new_product.categories.add(category)
+"""
