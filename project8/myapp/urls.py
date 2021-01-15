@@ -10,5 +10,6 @@ urlpatterns = [
 	url(r'^register/$', views.register, name="register"),
 	url(r'^registration_ok/$', views.registration_ok, name="registration_ok"),
 	url(r'^logged_out/$', views.logged_out, name="logged_out"),
-	url(r'^user_products/$', views.user_products, name="user_products")
+	url(r'^user_products/$', views.user_products, name="user_products"),
+	url(r'^save_product/(?P<product_selected_id>[0-9]+)/(?P<substitution_id>[0-9]+)/$', views.save_product, name="save_product")
 ]

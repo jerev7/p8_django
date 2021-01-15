@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseNotFound, Http404
-from .models import Category, Products
+from .models import Category, Products, Product_saved
 from django.template import loader
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .register_form import RegisterForm
 from django.contrib import messages
-
+from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
@@ -90,15 +90,22 @@ def search(request):
 def user_products(request):
     user = request.user
     if user.is_authenticated:
-        return render(request, 'myapp/user_products.html')
+        products_saved = Product_saved.objects.filter(user=user)
+        context ={
+            'products_saved': products_saved
+        }
+        return render(request, 'myapp/user_products.html', context)
     else:
         return redirect('login')
 
-"""
+
 def save_product(request, product_selected_id, substitution_id):
-    product_selected = get_object_or_404(Product, pk=product_selected_id)
-    substitution_product = get_object_or_404(Product, pk=substitution_id)
+    product_selected = get_object_or_404(Products, pk=product_selected_id)
+    substitution_product = get_object_or_404(Products, pk=substitution_id)
     user = request.user
 
-    new_product.categories.add(category)
-"""
+    save_product = Product_saved.objects.create(product_selected=product_selected, substitution_product=substitution_product, user=user)
+
+    return redirect('user_products')
+
+

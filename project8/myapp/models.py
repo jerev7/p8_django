@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -32,3 +33,12 @@ class Products(models.Model):
 
 	def __str__(self):
 		return self.name
+
+
+class Product_saved(models.Model):
+	product_selected = models.ForeignKey(Products, related_name='product_selected', on_delete=models.CASCADE)
+	substitution_product = models.ForeignKey(Products, related_name='substitution_product', on_delete=models.CASCADE)
+	user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE)
+
+	class Meta:
+		ordering = ['id']
