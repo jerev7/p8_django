@@ -1,12 +1,12 @@
 {% extends 'myapp/base.html' %}
-
+{% load static %}
 {% block content %}
-<section class="page-section bg-primary" id="about">
+<section class="page-section" style="background-color: #de9440;" id="about">
     <div class="container">   
             {% block second1 %}{% endblock %}
     </div>
 </section>
-<header class="second1 bg-primary" id="about">
+<header class="second1" id="about">
     <div class="container">
         <div class="row justify-content-center">
             {% block second2 %}{% endblock %}

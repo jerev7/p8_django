@@ -24,7 +24,7 @@
   --white: #fff;
   --gray: #6c757d;
   --gray-dark: #343a40;
-  --primary: #f4623a;
+  --primary: #e8a75d;
   --secondary: #6c757d;
   --success: #28a745;
   --info: #17a2b8;
@@ -6201,7 +6201,7 @@ button.bg-dark:focus {
 }
 
 .border-primary {
-  border-color: #f4623a !important;
+  border-color: #e8a75d !important;
 }
 
 .border-secondary {
@@ -9775,7 +9775,7 @@ button.bg-dark:focus {
 }
 
 .text-primary {
-  color: #f4623a !important;
+  color: #e8a75d !important;
 }
 
 a.text-primary:hover, a.text-primary:focus {
