@@ -19,6 +19,7 @@
           {% endif %}
           {% if products.has_next %}
               <li><a href="?page={{ products.next_page_number }}">Suivant</a></li>
+              <a href="#" onclick="addUrlParameter('page', '{{ products.next_page_number }}')">suivant 2</a>
           {% endif %}
         </ul>
       </nav>
