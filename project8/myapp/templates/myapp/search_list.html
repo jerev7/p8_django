@@ -15,11 +15,10 @@
       <nav aria-label="">
         <ul class="pager">
           {% if products.has_previous %}
-              <li><a href="?page={{ products.previous_page_number }}">Précédent</a></li>
+              <li><a href="#" onclick="addUrlParameter('page', '{{ products.previous_page_number }}')">Précédent</a></li>
           {% endif %}
           {% if products.has_next %}
-              <li><a href="?page={{ products.next_page_number }}">Suivant</a></li>
-              <a href="#" onclick="addUrlParameter('page', '{{ products.next_page_number }}')">suivant 2</a>
+              <li><a href="#" onclick="addUrlParameter('page', '{{ products.next_page_number }}')">Suivant</a></li>
           {% endif %}
         </ul>
       </nav>
