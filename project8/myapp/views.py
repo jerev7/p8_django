@@ -108,4 +108,9 @@ def save_product(request, product_selected_id, substitution_id):
 
     return redirect('user_products')
 
+def delete_product(request, product_id):
+    product_to_delete = get_object_or_404(Product_saved, pk=product_id)
+    product_to_delete.delete()
+
+    return redirect('user_products')
 
