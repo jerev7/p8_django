@@ -100,17 +100,23 @@ def user_products(request):
 
 
 def save_product(request, product_selected_id, substitution_id):
-    product_selected = get_object_or_404(Products, pk=product_selected_id)
-    substitution_product = get_object_or_404(Products, pk=substitution_id)
     user = request.user
+    if user.is_authenticated:
+        product_selected = get_object_or_404(Products, pk=product_selected_id)
+        substitution_product = get_object_or_404(Products, pk=substitution_id)
+        
+        save_product = Product_saved.objects.create(product_selected=product_selected, substitution_product=substitution_product, user=user)
 
-    save_product = Product_saved.objects.create(product_selected=product_selected, substitution_product=substitution_product, user=user)
-
-    return redirect('user_products')
+        return redirect('user_products')
+    else:
+        return redirect('login')
 
 def delete_product(request, product_id):
-    product_to_delete = get_object_or_404(Product_saved, pk=product_id)
-    product_to_delete.delete()
-
-    return redirect('user_products')
+    user = request.user
+    if user.is_authenticated:
+        product_to_delete = get_object_or_404(Product_saved, pk=product_id)
+        product_to_delete.delete()
+        return redirect('user_products')
+    else:
+        return redirect('login')
 
