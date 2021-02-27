@@ -104,9 +104,7 @@ def save_product(request, product_selected_id, substitution_id):
     if user.is_authenticated:
         product_selected = get_object_or_404(Products, pk=product_selected_id)
         substitution_product = get_object_or_404(Products, pk=substitution_id)
-        
         save_product = Product_saved.objects.create(product_selected=product_selected, substitution_product=substitution_product, user=user)
-
         return redirect('user_products')
     else:
         return redirect('login')
