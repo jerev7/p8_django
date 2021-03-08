@@ -3,33 +3,12 @@ from django.http import HttpResponse, HttpResponseNotFound, Http404
 from .models import Category, Products, Product_saved
 from django.template import loader
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from .register_form import RegisterForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
     return render(request, 'myapp/index.html')
-
-def registration_ok(request):
-    return render(request, 'myapp/registration_ok.html')
-
-def logged_out(request):
-    return render(request, 'myapp/logged_out.html')
-
-def register(request):
-    if request.method == "POST":
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Account created successfully') # appears only in /admin
-            return redirect('registration_ok')
-    else:
-        form = RegisterForm()
-    context = {
-        "form": form
-    }
-    return render(request, 'myapp/register.html', context)
 
 def results(request, product_id):
     id = int(product_id)
