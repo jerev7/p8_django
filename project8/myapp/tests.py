@@ -39,14 +39,17 @@ def setting_up_db():
     testproduct.categories.add(testcategory)
     testproduct2.categories.add(testcategory)
     user = User.objects.create(username="Bob", email="bob@gmail.com", password="bobby")
-    
-    # savedproduct = Product_saved.objects.create(product_selected=testproduct, substitution_product=testproduct2, user=user)
-
 
 # Index page
 class IndexPageTestCase(TestCase):
     def test_index_page(self):
         response = self.client.get(reverse('index'))
+        self.assertEqual(response.status_code, 200)
+
+# Legal notices
+class LegalPageTestCase(TestCase):
+    def test_legal_page(self):
+        response = self.client.get(reverse('legal'))
         self.assertEqual(response.status_code, 200)
 
 
@@ -115,11 +118,3 @@ class SaveProductPageTestCase(TestCase):
         self.assertEqual(response2.status_code, 302)
         products_number_finally = len(Product_saved.objects.all())
         self.assertEqual(products_number_finally, products_number_before)
-
-# Create an account
-
-
-# Login
-
-
-# Logout

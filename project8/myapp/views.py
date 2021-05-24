@@ -10,6 +10,9 @@ from django.contrib.auth.models import User
 def index(request):
     return render(request, 'myapp/index.html')
 
+def legal(request):
+    return render(request, 'myapp/legal.html')
+
 def results(request, product_id):
     id = int(product_id)
     product_selected = get_object_or_404(Products, pk=id)
