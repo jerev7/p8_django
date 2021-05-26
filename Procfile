@@ -1,1 +1,1 @@
-web: gunicorn project8.wsgi.application
+web: gunicorn p8django.wsgi
