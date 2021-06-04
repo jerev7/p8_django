@@ -19,7 +19,7 @@ def register(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Account created successfully') # appears only in /admin
-            return redirect('registration/registration_ok')
+            return redirect('registration_ok')
     else:
         form = RegisterForm()
     context = {
