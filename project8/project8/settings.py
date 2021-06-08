@@ -27,10 +27,11 @@ SECRET_KEY = 'yl=n!f34rzc_=rt+1t)2(d&%@w&l6ws+ko#5trkm1@v8uy8nx7'
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get('ENV') == "PRODUCTION":
     DEBUG = False
+    ALLOWED_HOSTS = ["p8django.herokuapp.com"]
 else:
     DEBUG = True
+    ALLOWED_HOSTS = ["127.0.0.1"]
 
-ALLOWED_HOSTS = ["p8django.herokuapp.com"]
 
 
 # Application definition
