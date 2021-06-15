@@ -7,6 +7,7 @@ from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import selenium.webdriver.support.ui as ui
+import time
 
 
 
@@ -134,7 +135,7 @@ class PlayerFormTest(LiveServerTestCase):
         """
         self.driver = webdriver.Firefox()
         self.driver.get("https://p8django.herokuapp.com/")
-        self.wait = ui.WebDriverWait(self.driver, 1000)
+        # self.wait = ui.WebDriverWait(self.driver, 1000)
 
     # def tearDown(self):
     #     """
@@ -152,6 +153,10 @@ class PlayerFormTest(LiveServerTestCase):
         #populate the form with data
         form.send_keys(search_test)
         form.send_keys(Keys.ENTER)
+        url = self.driver.current_url
+        self.driver.implicitly_wait(10)
+        product_searched = self.driver.find_element_by_id('product_searched')
+        self.assertEqual(product_searched, "Produit recherché : nutella")
         
 
         #submit form
