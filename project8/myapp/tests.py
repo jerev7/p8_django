@@ -156,7 +156,8 @@ class PlayerFormTest(LiveServerTestCase):
         url = self.driver.current_url
         self.driver.implicitly_wait(10)
         product_searched = self.driver.find_element_by_id('product_searched')
-        self.assertEqual(product_searched, "Produit recherché : nutella")
+        new = product_searched.text
+        self.assertEqual(new, "Produit recherché : nutella")
         
 
         #submit form
