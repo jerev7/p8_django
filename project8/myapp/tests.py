@@ -3,6 +3,12 @@ from django.urls import reverse
 from .models import Category, Products, Product_saved
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
+from django.test import LiveServerTestCase
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import selenium.webdriver.support.ui as ui
+
+
 
 
 # Create your tests here.
@@ -118,3 +124,38 @@ class SaveProductPageTestCase(TestCase):
         self.assertEqual(response2.status_code, 302)
         products_number_finally = len(Product_saved.objects.all())
         self.assertEqual(products_number_finally, products_number_before)
+
+###################### Selenium tests #############################
+class PlayerFormTest(LiveServerTestCase):
+
+    def setUp(self):
+        """
+        Setting up selenium server
+        """
+        self.driver = webdriver.Firefox()
+        self.driver.get("https://p8django.herokuapp.com/")
+        self.wait = ui.WebDriverWait(self.driver, 1000)
+
+    # def tearDown(self):
+    #     """
+    #     Closing the server
+    #     """
+    #     self.driver.quit()
+    def testform(self):
+        
+        #find the elements you need to submit form
+        search_test = "nutella"
+
+        form = self.driver.find_element_by_id('searchForm')
+
+
+        #populate the form with data
+        form.send_keys(search_test)
+        form.send_keys(Keys.ENTER)
+        
+
+        #submit form
+        # submit.send_keys(Keys.RETURN)
+
+        #check result; page source looks at entire html document
+        # assert 'Lebron James' in selenium.page_source
