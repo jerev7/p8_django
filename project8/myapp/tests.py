@@ -135,30 +135,41 @@ class PlayerFormTest(LiveServerTestCase):
         """
         self.driver = webdriver.Firefox()
         self.driver.get("https://p8django.herokuapp.com/")
-        # self.wait = ui.WebDriverWait(self.driver, 1000)
+        self.wait = ui.WebDriverWait(self.driver, 3000)
 
     # def tearDown(self):
     #     """
     #     Closing the server
     #     """
     #     self.driver.quit()
-    def testform(self):
+    def test_search_page(self):
         
         #find the elements you need to submit form
         search_test = "nutella"
-
         form = self.driver.find_element_by_id('searchForm')
-
-
-        #populate the form with data
         form.send_keys(search_test)
         form.send_keys(Keys.ENTER)
+        self.driver.implicitly_wait(100)
+        ui.WebDriverWait(self.driver, 3000)
+        # url = self.driver.current_url
+        # self.assertEqual(url, "https://p8django.herokuapp.com/myapp/search/?query=nutella")
+
+        #testing search : nutella
+        product_searched = self.driver.find_element_by_id('product_searched').text
+        self.assertEqual(product_searched, "Produit recherché : nutella")
         url = self.driver.current_url
-        self.driver.implicitly_wait(10)
-        product_searched = self.driver.find_element_by_id('product_searched')
-        new = product_searched.text
-        self.assertEqual(new, "Produit recherché : nutella")
-        
+        self.assertEqual(url, "https://p8django.herokuapp.com/myapp/search/?query=nutella")
+
+
+        # selecting the first product
+        self.driver.find_element_by_partial_link_text("Nutella").click()
+        url = self.driver.current_url
+        self.assertEqual(url, "https://p8django.herokuapp.com/myapp/2/")
+
+        # see first product detail
+        self.driver.find_element_by_partial_link_text("Pâte").click()
+        url = self.driver.current_url
+        self.assertEqual(url, "https://p8django.herokuapp.com/myapp/product_detail/3/")
 
         #submit form
         # submit.send_keys(Keys.RETURN)
