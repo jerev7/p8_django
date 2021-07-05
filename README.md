@@ -10,7 +10,25 @@ We built the website using Django, and we got all food data from Openfoodfacts A
 
 For now we have data only about products in the same category as Nutella to show that it is working but we can add easily all categories we need. 
 
-- Recuperation des données.
+**_How to get data from Openfoodfacts :_**
+
+To fill your database with Openfoodfacts data, first you need to set up your PostgreSQL database.
+
+To do so you need to :
+1) Create a database.
+2) Update settings.py file with database information as follows :
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'project8',
+        'USER': 'jeremiev',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '5432'
+    }
+}
+"""
 
 - clonage repo
 
