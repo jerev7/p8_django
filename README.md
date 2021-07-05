@@ -10,6 +10,8 @@ We built the website using Django, and we got all food data from Openfoodfacts A
 
 For now we have data only about products in the same category as Nutella to show that it is working but we can add easily all categories we need. 
 
+**_How to clone repository :_**
+
 **_How to get data from Openfoodfacts :_**
 
 To fill your database with Openfoodfacts data, first you need to set up your PostgreSQL database.
@@ -34,5 +36,3 @@ DATABASES = {
 3) Go to project8/ folder and run the following command :
 
 python3 manage.py getdata
-
-- clonage repo
