@@ -15,7 +15,7 @@ For now we have data only about products in the same category as Nutella to show
 To fill your database with Openfoodfacts data, first you need to set up your PostgreSQL database.
 
 To do so you need to :
-1) Create a database.
+1) Create your database.
 2) Update settings.py file with database information as follows :
 
 ```
@@ -31,6 +31,8 @@ DATABASES = {
 }
 ```
 
-- clonage repo
+3) Go to project8/ folder and run the following command :
 
-- 
+python3 manage.py getdata
+
+- clonage repo
