@@ -17,7 +17,7 @@ To fill your database with Openfoodfacts data, first you need to set up your Pos
 To do so you need to :
 1) Create a database.
 2) Update settings.py file with database information as follows :
-"""
+`
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -28,7 +28,7 @@ DATABASES = {
         'PORT': '5432'
     }
 }
-"""
+`
 
 - clonage repo
 
