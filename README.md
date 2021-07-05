@@ -18,7 +18,7 @@ To do so you need to :
 1) Create a database.
 2) Update settings.py file with database information as follows :
 
-`
+```
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -29,7 +29,7 @@ DATABASES = {
         'PORT': '5432'
     }
 }
-`
+```
 
 - clonage repo
 
