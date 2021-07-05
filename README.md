@@ -22,11 +22,11 @@ To do so you need to :
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'project8',
-        'USER': 'jeremiev',
-        'PASSWORD': '',
+        'NAME': 'name_of_your_db',
+        'USER': 'username',
+        'PASSWORD': 'password_if_you_have_one',
         'HOST': '',
-        'PORT': '5432'
+        'PORT': 'port_number'
     }
 }
 ```
