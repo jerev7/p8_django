@@ -1,4 +1,4 @@
-# Project 8 - Django :
+# Projet 8 - Django :
 
 **_Description :_**
 
