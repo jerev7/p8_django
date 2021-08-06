@@ -7,18 +7,22 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 
 # Create your views here.
+
+
 def index(request):
     return render(request, 'myapp/index.html')
 
+
 def legal(request):
     return render(request, 'myapp/legal.html')
+
 
 def results(request, product_id):
     id = int(product_id)
     product_selected = get_object_or_404(Products, pk=id)
     category = get_object_or_404(Category, product__id=product_selected.id)
     # category = get_object_or_404(Category, pk=id)
-    product_list = category.product.filter(nutriscore__lt = product_selected.nutriscore)
+    product_list = category.product.filter(nutriscore__lt=product_selected.nutriscore)
     paginator = Paginator(product_list, 6)
     page = request.GET.get('page')
     try:
@@ -35,6 +39,7 @@ def results(request, product_id):
     }
     return render(request, 'myapp/results.html', context)
 
+
 def product_detail(request, product_id):
     id = int(product_id)
     product_selected = get_object_or_404(Products, pk=id)
@@ -42,6 +47,7 @@ def product_detail(request, product_id):
         'product_selected': product_selected
     }
     return render(request, 'myapp/product_detail.html', context)
+
 
 def search(request):
     query = request.GET.get('query')
@@ -62,18 +68,19 @@ def search(request):
 
     if len(products) == 0:
         raise Http404
-    context ={
+    context = {
         'paginate': True,
         'products': products,
         'query': query
     }
     return render(request, 'myapp/search.html', context)
 
+
 def user_products(request):
     user = request.user
     if user.is_authenticated:
         products_saved = Product_saved.objects.filter(user=user)
-        context ={
+        context = {
             'products_saved': products_saved
         }
         return render(request, 'myapp/user_products.html', context)
@@ -90,6 +97,7 @@ def save_product(request, product_selected_id, substitution_id):
         return redirect('user_products')
     else:
         return redirect('login')
+
 
 def delete_product(request, product_id):
     user = request.user

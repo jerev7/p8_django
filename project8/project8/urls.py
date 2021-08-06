@@ -23,7 +23,7 @@ from registration import views as v
 from myapp import views
 
 urlpatterns = [
-	url(r'^$', views.index, name="index"),
+    url(r'^$', views.index, name="index"),
     url(r'^admin/', admin.site.urls),
     url(r'^myapp/', include('myapp.urls')),
     url(r'^registration/', include('registration.urls')),
@@ -31,7 +31,7 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-	import debug_toolbar
-	urlpatterns = [
-		url(r'^__debug__/', include(debug_toolbar.urls)),
-	] + urlpatterns
+    import debug_toolbar
+    urlpatterns = [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns
