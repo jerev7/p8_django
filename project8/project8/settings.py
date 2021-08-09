@@ -33,7 +33,6 @@ else:
     ALLOWED_HOSTS = ["127.0.0.1"]
 
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -148,16 +147,10 @@ if os.environ.get('ENV') == "PRODUCTION":
 
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)
-# oooooo
-#iiii
-# STATICFILES_DIRS = [
-#     BASE_DIR / "myapp/static",
-# ]
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-CRISPY_TEMPLATE_PACK="bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "logged_out"
 NOSE_ARGS = ['--nocapture',
-             '--nologcapture',]
+             '--nologcapture']

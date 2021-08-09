@@ -168,7 +168,8 @@ class PlayerFormTest(LiveServerTestCase):
         product_searched = self.driver.find_element_by_id('product_searched').text
         self.assertEqual(product_searched, "Produit recherché : nutella")
         url = self.driver.current_url
-        self.assertEqual(url, "https://p8django.herokuapp.com/myapp/search/?query=nutella")
+        self.assertEqual(url, "https://p8django.herokuapp.com"
+                              "/myapp/search/?query=nutella")
 
         # selecting the first product
         self.driver.find_element_by_partial_link_text("Nutella").click()
@@ -178,4 +179,5 @@ class PlayerFormTest(LiveServerTestCase):
         # see first product detail
         self.driver.find_element_by_partial_link_text("Pâte").click()
         url = self.driver.current_url
-        self.assertEqual(url, "https://p8django.herokuapp.com/myapp/product_detail/3/")
+        self.assertEqual(url, "https://p8django.herokuapp.com"
+                              "/myapp/product_detail/3/")

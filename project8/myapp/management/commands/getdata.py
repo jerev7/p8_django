@@ -11,7 +11,7 @@ url = 'https://fr.openfoodfacts.org/categorie\
 
 
 def get_product(category, url):
-    
+
     final_list = []
 
     nutrition_grade_list = ["a", "b", "c", "d", "e"]
@@ -31,7 +31,6 @@ def get_product(category, url):
     ]
     response = requests.get(url)
     my_products = response.json()["products"]
-    # i = 0
     for product in my_products:
         if 'product_name_fr' in product and product["product_name_fr"] != "":
             new_entry = {}
@@ -82,6 +81,7 @@ def add_products_to_db(product_list):
         else:
             category = category_check[0]
         new_product.categories.add(category)
+
 
 class Command(BaseCommand):
 

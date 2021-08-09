@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 # Create an account
 class AccountPageTest(TestCase):
-    def test_account_creation(self):        
+    def test_account_creation(self):
         response = self.client.post(reverse('register'),
                                     data={"username": "Bob",
                                           "email": "bob@mail.com",
