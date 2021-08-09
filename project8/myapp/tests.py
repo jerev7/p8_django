@@ -26,8 +26,10 @@ def setting_up_db():
                                           fat_100g=2,
                                           saturated_fat_100g=1.2,
                                           proteins=4,
-                                          nutriscore_complete_url="myapp/assets/img/nutriscore/nutricomplet_e.png",
-                                          nutriscore_letter_url="myapp/assets/img/nutriscore/nutrilettre_e.png")
+                                          nutriscore_complete_url="myapp/assets\
+                                          /img/nutriscore/nutricomplet_e.png",
+                                          nutriscore_letter_url="myapp/assets\
+                                          /img/nutriscore/nutrilettre_e.png")
     testproduct2 = Products.objects.create(name="testproduct2",
                                            nutriscore=3,
                                            image_url="/",
@@ -38,11 +40,16 @@ def setting_up_db():
                                            fat_100g=2,
                                            saturated_fat_100g=1.2,
                                            proteins=4,
-                                           nutriscore_complete_url="myapp/assets/img/nutriscore/nutricomplet_d.png",
-                                           nutriscore_letter_url="myapp/assets/img/nutriscore/nutrilettre_d.png")
+                                           nutriscore_complete_url="myapp\
+                                           /assets/img/nutriscore\
+                                           /nutricomplet_d.png",
+                                           nutriscore_letter_url="myapp/assets\
+                                           /img/nutriscore/nutrilettre_d.png")
     testproduct.categories.add(testcategory)
     testproduct2.categories.add(testcategory)
-    user = User.objects.create(username="Bob", email="bob@gmail.com", password="bobby")
+    User.objects.create(username="Bob",
+                        email="bob@gmail.com",
+                        password="bobby")
 
 
 # Index page
@@ -93,7 +100,8 @@ class DetailPageTestCase(TestCase):
     def test_detail_page_product_found(self):
         myproduct = Products.objects.get(name="testproduct")
         product_id = myproduct.id
-        response = self.client.get(reverse('product_detail', args=(product_id,)))
+        response = self.client.get(reverse('product_detail',
+                                           args=(product_id,)))
         self.assertEqual(response.status_code, 200)
 
 
@@ -111,7 +119,9 @@ class SaveProductPageTestCase(TestCase):
         product_to_save_substitution = Products.objects.get(name="testproduct2")
         product_to_save_substitution_id = Products.objects.get(name="testproduct2").id
         # Saving new product
-        response = self.client.get(reverse('save_product', kwargs={'product_selected_id': product_to_save_selected_id, 'substitution_id': product_to_save_substitution_id}))
+        response = self.client.get(reverse('save_product',
+                                           kwargs={'product_selected_id': product_to_save_selected_id,
+                                                   'substitution_id': product_to_save_substitution_id}))
         self.assertEqual(response.status_code, 302)
 
         saved_products_after = Product_saved.objects.all()
@@ -122,7 +132,8 @@ class SaveProductPageTestCase(TestCase):
         new_product_saved = Product_saved.objects.get(product_selected=product_to_save_selected,
                                                       substitution_product=product_to_save_substitution,
                                                       user=User.objects.get(username='Bob'))
-        response2 = self.client.get(reverse('delete_product', args=(new_product_saved.id,)))
+        response2 = self.client.get(reverse('delete_product',
+                                            args=(new_product_saved.id,)))
         self.assertEqual(response2.status_code, 302)
         products_number_finally = len(Product_saved.objects.all())
         self.assertEqual(products_number_finally, products_number_before)

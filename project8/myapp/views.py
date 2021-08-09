@@ -1,10 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse, HttpResponseNotFound, Http404
+from django.http import Http404
 from .models import Category, Products, Product_saved
-from django.template import loader
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.contrib import messages
-from django.contrib.auth.models import User
+
 
 # Create your views here.
 
@@ -93,7 +91,9 @@ def save_product(request, product_selected_id, substitution_id):
     if user.is_authenticated:
         product_selected = get_object_or_404(Products, pk=product_selected_id)
         substitution_product = get_object_or_404(Products, pk=substitution_id)
-        save_product = Product_saved.objects.create(product_selected=product_selected, substitution_product=substitution_product, user=user)
+        Product_saved.objects.create(product_selected=product_selected,
+                                     substitution_product=substitution_product,
+                                     user=user)
         return redirect('user_products')
     else:
         return redirect('login')
@@ -107,4 +107,3 @@ def delete_product(request, product_id):
         return redirect('user_products')
     else:
         return redirect('login')
-

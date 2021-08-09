@@ -1,13 +1,15 @@
 from myapp.models import Category, Products
 import requests
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 
 
 """
 code working for this url :
-url = https://fr.openfoodfacts.org/categorie/pates-a-tartiner-aux-noisettes/1.json
-
+url = 'https://fr.openfoodfacts.org/categorie\
+      /pates-a-tartiner-aux-noisettes/1.json'
 """
+
+
 def get_product(category, url):
     
     final_list = []
@@ -51,15 +53,11 @@ def get_product(category, url):
             if "image_front_url" in product:
                 new_entry["image_url"] = product["image_front_url"]
             else:
-                new_entry["image_url"] = "myapp/assets/img/image_not_found.png" # mettre chaine vide et mettre le lien dans le front
+                new_entry["image_url"] = "myapp/assets/img/image_not_found.png"
             # i += 1
             # new_entry["compte"] = i
             final_list.append(new_entry)
     return final_list
-
-
-
-# print(get_product("pates-a-tartiner-aux-noisettes", "https://fr.openfoodfacts.org/categorie/pates-a-tartiner-aux-noisettes/1.json"))
 
 
 def add_products_to_db(product_list):
@@ -93,6 +91,7 @@ class Command(BaseCommand):
         pass
 
     def handle(self, *args, **options):
-        add_products_to_db(get_product("pates-a-tartiner-aux-noisettes", "https://fr.openfoodfacts.org/categorie/pates-a-tartiner-aux-noisettes/1.json"))
+        add_products_to_db(get_product("pates-a-tartiner-aux-noisettes",
+                                       "https://fr.openfoodfacts.org/categorie/pates-a-tartiner-aux-noisettes/1.json"))
 
         self.stdout.write(self.style.SUCCESS('Successfully inserted in database'))

@@ -1,18 +1,16 @@
 from django.test import TestCase
 from django.urls import reverse
-from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse, HttpResponseNotFound, Http404
-from django.template import loader
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from .register_form import RegisterForm
-from django.contrib import messages
 from django.contrib.auth.models import User
 
 
 # Create an account
 class AccountPageTest(TestCase):
     def test_account_creation(self):        
-        response = self.client.post(reverse('register'), data={"username":"Bob", "email":"bob@mail.com", "password1":"monpassword23", "password2":"monpassword23"})
+        response = self.client.post(reverse('register'),
+                                    data={"username": "Bob",
+                                          "email": "bob@mail.com",
+                                          "password1": "monpassword23",
+                                          "password2": "monpassword23"})
         self.assertEqual(response.status_code, 302)
         new_user = User.objects.get(username="Bob")
         self.assertEqual(new_user.username, "Bob")
@@ -25,8 +23,3 @@ class AccountPageTest(TestCase):
     def test_registration_ok(self):
         response = self.client.get(reverse('registration_ok'))
         self.assertEqual(response.status_code, 200)
-
-# Login
-
-
-# Logout
