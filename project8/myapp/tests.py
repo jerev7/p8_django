@@ -114,24 +114,26 @@ class SaveProductPageTestCase(TestCase):
         self.client.force_login(user=User.objects.get(username='Bob'))
         saved_products = Product_saved.objects.all()
         products_number_before = len(saved_products)
-        product_to_save_selected = Products.objects.get(name="testproduct")
-        product_to_save_selected_id = Products.objects.get(name="testproduct").id
-        product_to_save_substitution = Products.objects.get(name="testproduct2")
-        product_to_save_substitution_id = Products.objects.get(name="testproduct2").id
+        prod_to_save_selected = Products.objects.get(name="testproduct")
+        prod_to_save_sel_id = Products.objects.get(name="testproduct").id
+        prod_to_save_subst = Products.objects.get(name="testproduct2")
+        prod_save_subst_id = Products.objects.get(name="testproduct2").id
         # Saving new product
-        response = self.client.get(reverse('save_product',
-                                           kwargs={'product_selected_id': product_to_save_selected_id,
-                                                   'substitution_id': product_to_save_substitution_id}))
-        self.assertEqual(response.status_code, 302)
+        res = (self.client
+               .get(reverse('save_product',
+                            kwargs={'product_selected_id': prod_to_save_sel_id,
+                                    'substitution_id': prod_save_subst_id})))
+        self.assertEqual(res.status_code, 302)
 
         saved_products_after = Product_saved.objects.all()
         products_number_after = len(saved_products_after)
         self.assertEqual(products_number_after, (products_number_before + 1))
 
         # Deleting new product
-        new_product_saved = Product_saved.objects.get(product_selected=product_to_save_selected,
-                                                      substitution_product=product_to_save_substitution,
-                                                      user=User.objects.get(username='Bob'))
+        new_product_saved = (Product_saved.objects
+                             .get(product_selected=prod_to_save_selected,
+                                  substitution_product=prod_to_save_subst,
+                                  user=User.objects.get(username='Bob')))
         response2 = self.client.get(reverse('delete_product',
                                             args=(new_product_saved.id,)))
         self.assertEqual(response2.status_code, 302)
@@ -165,7 +167,8 @@ class PlayerFormTest(LiveServerTestCase):
         ui.WebDriverWait(self.driver, 3000)
 
         # testing search : nutella
-        product_searched = self.driver.find_element_by_id('product_searched').text
+        product_searched = (self.driver
+                            .find_element_by_id('product_searched').text)
         self.assertEqual(product_searched, "Produit recherché : nutella")
         url = self.driver.current_url
         self.assertEqual(url, "https://p8django.herokuapp.com"
