@@ -20,7 +20,8 @@ def results(request, product_id):
     product_selected = get_object_or_404(Products, pk=id)
     category = get_object_or_404(Category, product__id=product_selected.id)
     # category = get_object_or_404(Category, pk=id)
-    product_list = category.product.filter(nutriscore__lt=product_selected.nutriscore)
+    product_list = (category.product
+                    .filter(nutriscore__lt=product_selected.nutriscore))
     paginator = Paginator(product_list, 6)
     page = request.GET.get('page')
     try:
